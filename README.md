@@ -68,9 +68,10 @@ SwiftUI-AnySubViews unifies the following types, ensuring consistent API usage a
 | AnySubviewsCollection | SubviewsCollection | \_VariadicView_Children |
 | AnySubviewsCollectionSlice | SubviewsCollectionSlice | Slice<_VariadicView_Children> |
 
-## Limitation
+## TODO
 
-Due to Swift language constraints, setting and accessing [container values](https://developer.apple.com/documentation/swiftui/containervalues) of a view is not supported in this library.
+- [ ] Support [hasTag](https://developer.apple.com/documentation/swiftui/containervalues/hastag(_:))
+- [ ] Support [container values](https://developer.apple.com/documentation/swiftui/containervalues)
 
 ## Dropping iOS 17
 
