@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A type erasing view for `Subview` on iOS 18 and `_VariadicView_Children.Element` on other below 18.
+/// AnySubview bridging the gap between `Subview` on iOS 18 and later, and `_VariadicView_Children.Element` on earlier iOS versions.
 public struct AnySubview: View, @preconcurrency Identifiable, Sendable {
     
     public let body: AnyView

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// AnySubviewsCollection bridging the gap between `SubviewsCollection` on iOS 18 and later, and `_VariadicView_Children` on earlier iOS versions.
 public struct AnySubviewsCollection: RandomAccessCollection, @unchecked Sendable {
     
     public typealias Element = AnySubview

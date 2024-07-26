@@ -7,21 +7,20 @@
 
 import SwiftUI
 
-private struct Root<Result: View>: _VariadicView_ViewRoot {
-    let childrenHandler: (_VariadicView_Children) -> Result
-    
-    func body(children: _VariadicView_Children) -> some View {
-        childrenHandler(children)
-    }
-}
-
-/// After dropping support for iOS 17,
+/// BackportGroup is a backport API for accessing subviews of the given content view.
+///
+/// After dropping supports for iOS 17,
 /// you can remove AnySubviews package completely and replace all 'BackportGroup' with 'Group' throughout your codebase.
 public struct BackportGroup<Content: View, Result: View>: View {
     
     private let content: Content
     private let transform: (AnySubviewsCollection) -> Result
     
+    /// Constructs a group from the subviews of the given view.
+    ///
+    /// - Parameters:
+    ///   - view: The content view containing the subviews you want to access.
+    ///   - transform: A closure that takes an AnySubviewsCollection and returns a new view hierarchy.
     public init(
         subviews view: Content,
         @ViewBuilder transform: @escaping (AnySubviewsCollection) -> Result
@@ -43,6 +42,14 @@ public struct BackportGroup<Content: View, Result: View>: View {
                 content: { content }
             )
         }
+    }
+}
+
+private struct Root<Result: View>: _VariadicView_ViewRoot {
+    let childrenHandler: (_VariadicView_Children) -> Result
+    
+    func body(children: _VariadicView_Children) -> some View {
+        childrenHandler(children)
     }
 }
 
