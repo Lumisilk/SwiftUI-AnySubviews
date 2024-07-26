@@ -2,9 +2,9 @@
 
 SwiftUI-AnySubviews is a library that unifies subview access APIs across different iOS versions, providing a consistent interface for SwiftUI developers.
 
-On iOS 18, SwiftUI introduces a new API [Group(subviews:transform:)](https://developer.apple.com/documentation/swiftui/group/init(subviews:transform:) to allow developers to access the subviews of a given content view. This API is only available for iOS 18. However, there is an API called `VariadicView` exists since the first release of SwiftUI, which has almost the same feature with `Group(subviews:transform:)`.
+On iOS 18, SwiftUI introduces a new API [Group(subviews:transform:)](https://developer.apple.com/documentation/swiftui/group/init(subviews:transform:)) to allow developers to access the subviews of a given content view. This API is only available for iOS 18. However, there is an API called `VariadicView` exists since the first release of SwiftUI, which has almost the same feature with `Group(subviews:transform:)`. SwiftUI-AnySubViews unifies these two API so developers can use a consistent API across different iOS versions.
 
-SwiftUI-AnySubViews unifies these two API so developers can use a consistent API across different iOS versions, providing compatibility and future-proofing your SwiftUI code.
+You can check VariadicView's detail on The Moving Parts Team's blog [SwiftUI under the Hood: Variadic Views](https://movingparts.io/variadic-views-in-swiftui).
 
 ## Requirements
 
@@ -22,10 +22,10 @@ https://github.com/Lumisilk/SwiftUI-AnySubviews.git
 
 You can use `BackportGroup` basiclly like using `Group(subviews:transform:)`.
 
-Check [the official documents](https://developer.apple.com/documentation/swiftui/group/init(subviews:transform:)) for further usage.
+Check the official [documents](https://developer.apple.com/documentation/swiftui/group/init(subviews:transform:)) for further usage.
 
 ```swift
-import BackportGroup
+import AnySubviews
 
 struct CardsView<Content: View>: View {
     
