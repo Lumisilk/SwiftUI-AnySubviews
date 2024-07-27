@@ -19,6 +19,10 @@ let package = Package(
                 .enableExperimentalFeature("StrictConcurrency")
             ]
         ),
-        
+        .executableTarget(
+            name: "Example",
+            dependencies: ["AnySubviews"],
+            path: "Example"
+        )
     ]
 )

@@ -67,10 +67,11 @@ SwiftUI-AnySubViews unifies the following types, ensuring consistent API usage a
 | AnySubview | Subview | \_VariadicView_Children.Element |
 | AnySubviewsCollection | SubviewsCollection | \_VariadicView_Children |
 | AnySubviewsCollectionSlice | SubviewsCollectionSlice | Slice<_VariadicView_Children> |
+| AnyContainerValues | ContainerValues | TODO |
 
 ## TODO
 
-- [ ] Support [hasTag](https://developer.apple.com/documentation/swiftui/containervalues/hastag(_:))
+- [x] Support [hasTag](https://developer.apple.com/documentation/swiftui/containervalues/hastag(_:))
 - [ ] Support [container values](https://developer.apple.com/documentation/swiftui/containervalues)
 
 ## Dropping iOS 17
