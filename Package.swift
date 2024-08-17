@@ -2,6 +2,7 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import CompilerPluginSupport
 
 let package = Package(
     name: "AnySubviews",
@@ -12,17 +13,23 @@ let package = Package(
             targets: ["AnySubviews"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-syntax.git", from: "510.0.3"),
+    ],
     targets: [
+        .macro(
+            name: "AnyEntryMacro",
+            dependencies: [
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
+            ]
+        ),
         .target(
             name: "AnySubviews",
+            dependencies: ["AnyEntryMacro"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency")
             ]
-        ),
-        .executableTarget(
-            name: "Example",
-            dependencies: ["AnySubviews"],
-            path: "Example"
         )
     ]
 )
