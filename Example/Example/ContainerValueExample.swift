@@ -9,18 +9,24 @@ import SwiftUI
 import AnySubviews
 
 struct ContainerValueExample: View {
+    
     var body: some View {
-        VStack {
+        List {
             BackportGroup(subviews: content) { subviews in
-                Text("Original View:")
-                subviews
+                Section {
+                    subviews
+                } header: {
+                    Text("Original View:")
+                }
                 
-                Text("Custom Container Values:")
-                
-                ForEach(subviews) { subview in
-                    let number = subview.containerValues[\.myNumber]?.description ?? "nil"
-                    let name = subview.containerValues[\.myName] ?? "nil"
-                    Text(number + " " + name)
+                Section {
+                    ForEach(subviews) { subview in
+                        let number = subview.containerValues[\.myNumber]?.description ?? "nil"
+                        let name = subview.containerValues[\.myName] ?? "nil"
+                        Text(number + " " + name)
+                    }
+                } header: {
+                    Text("Custom Container Values:")
                 }
             }
         }
