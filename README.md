@@ -67,21 +67,52 @@ SwiftUI-AnySubViews unifies the following types, ensuring consistent API usage a
 | AnySubview | Subview | \_VariadicView_Children.Element |
 | AnySubviewsCollection | SubviewsCollection | \_VariadicView_Children |
 | AnySubviewsCollectionSlice | SubviewsCollectionSlice | Slice<_VariadicView_Children> |
-| AnyContainerValues | ContainerValues | TODO |
+| AnyContainerValues | ContainerValues | _ViewTraitKey |
 
-## TODO
+### ContainerValues
 
-- [x] Support [hasTag](https://developer.apple.com/documentation/swiftui/containervalues/hastag(_:))
-- [ ] Support [container values](https://developer.apple.com/documentation/swiftui/containervalues)
+[ContainerValues](https://developer.apple.com/documentation/SwiftUI/ContainerValues) is also supported in AnySubviews.
+To define your custom container values associated with a view, use macro `AnyEntry` within `AnyContainerValueKeys`'s extension:
+
+```swift
+// Define
+// #AnyEntry<Type>(keyName, defaultValue)
+extension AnyContainerValueKeys {
+    #AnyEntry<Int>("myNumber", 0)
+    #AnyEntry<String>("myName", "Name")
+}
+
+// Set
+someView
+    .anyContainerValue(keyPath: \.myNumber, 1)
+    .anyContainerValue(keyPath: \.myName, "Lumi")
+
+// Read
+BackportGroup(subviews: content) { subviews in
+    ForEach(subviews) { subview in
+        let number = subview.containerValues[\.myNumber]?.description ?? "nil"
+        let name = subview.containerValues[\.myName] ?? "nil"
+        Text(number + " " + name)
+    }
+}
+```
 
 ## Dropping iOS 17
 
 When your app no longer needs to support iOS 17 and earlier versions, you can simplify your codebase:
 
-1. Remove the SwiftUI-AnySubviews package from your project.
+1. Remove the SwiftUI-AnySubviews package from your project completely.
 2. Replace all occurrences of `BackportGroup` with `Group` throughout your codebase.
+3. For `ContainerValues` especially:
+    1. Replace definition part with official API `extension ContainerValues { @Entry ... }`.
+    2. Replace setting part with official API `.containerValue(key: MyKey.self, value: 2)`.
+    3. Reaplce reading part with official API `subview.containerValues.myCustomValue`.
 
 Note: Only proceed with this step when you're certain that your app's minimum supported iOS version is 18 or later.
+
+## TODO
+
+- [ ] Enrich the error desecription of Macro `AnyEntry`
 
 ## Contributing
 
