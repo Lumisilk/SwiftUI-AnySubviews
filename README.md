@@ -1,4 +1,4 @@
-## SwiftUI-AnySubViews
+## SwiftUI-AnySubviews
 
 SwiftUI-AnySubviews is a library that unifies subview access APIs across different iOS versions, providing a consistent interface for SwiftUI developers.
 
@@ -113,6 +113,7 @@ Note: Only proceed with this step when you're certain that your app's minimum su
 ## TODO
 
 - [ ] Enrich the error desecription of Macro `AnyEntry`
+- [ ] Add a realistic view example using Anysubviews 
 
 ## Contributing
 
