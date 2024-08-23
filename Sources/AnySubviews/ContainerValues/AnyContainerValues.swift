@@ -8,6 +8,7 @@
 import SwiftUI
 
 @MainActor
+@dynamicMemberLookup
 public struct AnyContainerValues {
     private let box: Any
     
@@ -61,18 +62,13 @@ public struct AnyContainerValues {
         }
     }
     
-    /// Accesses the particular container value associated with a custom key.
-    public subscript<Key: AnyContainerValueKey>(keyPath: KeyPath<AnyContainerValueKeys, Key.Type>) -> Key.Value? {
-        get {
-            if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
-                if let keyType = Key.self as? any ContainerValueKey.Type {
-                    return containerValues[keyType] as? Key.Value
-                } else {
-                    return nil
-                }
-            } else  {
-                return child[Key.self]
-            }
+    /// Access the particular container value associated with a custom keyPath.
+    public subscript<Key: AnyContainerValueKey>(dynamicMember keyPath: KeyPath<AnyContainerValueKeys, Key.Type>) -> Key.Value {
+        if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
+            let keyType = Key.self as! any ContainerValueKey.Type
+            return containerValues[keyType] as! Key.Value
+        } else  {
+            return child[Key.self]
         }
     }
 }

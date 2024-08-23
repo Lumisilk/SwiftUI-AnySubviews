@@ -21,8 +21,8 @@ struct ContainerValueExample: View {
                 
                 Section {
                     ForEach(subviews) { subview in
-                        let number = subview.containerValues[\.myNumber]?.description ?? "nil"
-                        let name = subview.containerValues[\.myName] ?? "nil"
+                        let number = subview.containerValues.myNumber.description
+                        let name = subview.containerValues.myName
                         Text(number + " " + name)
                     }
                 } header: {

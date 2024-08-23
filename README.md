@@ -76,8 +76,8 @@ To define your custom container values associated with a view, use macro `AnyEnt
 
 ```swift
 // Define
-// #AnyEntry<Type>(keyName, defaultValue)
 extension AnyContainerValueKeys {
+//  #AnyEntry<Type>(keyName, defaultValue)
     #AnyEntry<Int>("myNumber", 0)
     #AnyEntry<String>("myName", "Name")
 }
@@ -90,8 +90,8 @@ someView
 // Read
 BackportGroup(subviews: content) { subviews in
     ForEach(subviews) { subview in
-        let number = subview.containerValues[\.myNumber]?.description ?? "nil"
-        let name = subview.containerValues[\.myName] ?? "nil"
+        let number = subview.containerValues.myNumber.description
+        let name = subview.containerValues.myName
         Text(number + " " + name)
     }
 }
