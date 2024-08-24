@@ -1,6 +1,6 @@
 ## SwiftUI-AnySubviews
 
-SwiftUI-AnySubviews is a library that unifies subview access APIs across different iOS versions, providing a consistent interface for SwiftUI developers.
+SwiftUI-AnySubviews backports iOS 18's subview accessing API to iOS 13, providing a unified API to consistently interact with subviews across different iOS versions.
 
 On iOS 18, SwiftUI introduces a new API [Group(subviews:transform:)](https://developer.apple.com/documentation/swiftui/group/init(subviews:transform:)) to allow developers to access the subviews of a given content view. This API is only available for iOS 18. However, there is an API called `VariadicView` exists since the first release of SwiftUI, which has almost the same feature with `Group(subviews:transform:)`. SwiftUI-AnySubViews unifies these two API so developers can use a consistent API across different iOS versions.
 
@@ -16,6 +16,11 @@ You can check VariadicView's detail on The Moving Parts Team's blog [SwiftUI und
 Use [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add this package.
 ```
 https://github.com/Lumisilk/SwiftUI-AnySubviews.git
+```
+
+If you use SwiftUI-AnySubviews in another package, add this line to your dependencies.
+```
+.product(name: "AnySubviews", package: "SwiftUI-AnySubviews")
 ```
 
 ## Usage
