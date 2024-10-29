@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 @dynamicMemberLookup
 public struct AnyContainerValues {
     private let box: Any

@@ -10,16 +10,23 @@ import AnySubviews
 
 struct TagExample: View {
     var body: some View {
-        VStack {
+        List {
             BackportGroup(subviews: content) { subviews in
                 ForEach(subviews) { subview in
-                    if let tag = subview.containerValues.tag(for: Double.self) {
-                        print(tag)
+                    HStack {
+                        subview
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .trailing) {
+                            if let tag = subview.containerValues.tag(for: Double.self) {
+                                Text(tag.description)
+                            }
+                            if let tag = subview.containerValues.tag(for: String.self) {
+                                Text(tag)
+                            }
+                        }
                     }
-                    if let tag = subview.containerValues.tag(for: String.self) {
-                        print(tag)
-                    }
-                    return subview
                 }
             }
         }
