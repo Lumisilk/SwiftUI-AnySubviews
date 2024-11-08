@@ -8,12 +8,20 @@ You can check VariadicView's detail on The Moving Parts Team's blog [SwiftUI und
 
 ## Requirements
 
-- Xcode 16 (Swift 6.0)
+- Xcode 16, Swift 6.0
 - iOS 13, macOS 10.15, tvOS 13, watchOS 6, visionOS 1 or later
 
 ## Installation
 
+Please choose the following AnySubviews's version based on your Xcode and Swift version.
+
+|            | Swift 6.0    |
+| ---------- | ------------ |
+| Xcode 16.0 | exact: 1.1.1 |
+| Xcode 16.1 | from: 1.2.0  |
+
 Use [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add this package.
+
 ```
 https://github.com/Lumisilk/SwiftUI-AnySubviews.git
 ```
@@ -118,6 +126,7 @@ Note: Only proceed with this step when you're certain that your app's minimum su
 ## TODO
 
 - [ ] Enrich the error desecription of Macro `AnyEntry`
+- [ ] Add Swift 5.9 Support?
 - [ ] Add a realistic view example using Anysubviews 
 
 ## Contributing

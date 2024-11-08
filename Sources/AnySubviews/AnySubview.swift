@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// AnySubview bridging the gap between `Subview` on iOS 18 and later, and `_VariadicView_Children.Element` on earlier iOS versions.
-public struct AnySubview: View, @preconcurrency Identifiable, Sendable {
+public struct AnySubview: Identifiable {
     
     public let box: Any
     
@@ -38,19 +38,21 @@ public struct AnySubview: View, @preconcurrency Identifiable, Sendable {
         }
     }
     
-    public var body: some View {
-        if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
-            subview
-        } else  {
-            child
-        }
-    }
-    
     public var containerValues: AnyContainerValues {
         if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
             AnyContainerValues(subview)
         } else  {
             AnyContainerValues(child)
+        }
+    }
+}
+
+extension AnySubview: View {
+    public var body: some View {
+        if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
+            subview
+        } else  {
+            child
         }
     }
 }

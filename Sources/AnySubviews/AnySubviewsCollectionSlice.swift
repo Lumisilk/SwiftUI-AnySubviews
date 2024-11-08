@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// AnySubviewsCollectionSlice bridging the gap between `SubviewsCollectionSlice` on iOS 18 and later, and `Slice<_VariadicView_Children>` on earlier iOS versions.
-public struct AnySubviewsCollectionSlice: RandomAccessCollection, @unchecked Sendable {
+public struct AnySubviewsCollectionSlice: RandomAccessCollection {
     
     public typealias Element = AnySubview
     
@@ -41,12 +41,10 @@ public struct AnySubviewsCollectionSlice: RandomAccessCollection, @unchecked Sen
     }
     
     public subscript(position: Int) -> AnySubview {
-        MainActor.assumeIsolated {
-            if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
-                AnySubview(subviews[position])
-            } else  {
-                AnySubview(children[position])
-            }
+        if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
+            AnySubview(subviews[position])
+        } else  {
+            AnySubview(children[position])
         }
     }
     
@@ -78,20 +76,12 @@ public struct AnySubviewsCollectionSlice: RandomAccessCollection, @unchecked Sen
         if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
             var iterator = subviews.makeIterator()
             return AnyIterator {
-                iterator.next().map { subview in
-                    MainActor.assumeIsolated {
-                        AnySubview(subview)
-                    }
-                }
+                iterator.next().map(AnySubview.init)
             }
         } else  {
             var iterator = children.makeIterator()
             return AnyIterator {
-                iterator.next().map { child in
-                    MainActor.assumeIsolated {
-                        AnySubview(child)
-                    }
-                }
+                iterator.next().map(AnySubview.init)
             }
         }
     }
